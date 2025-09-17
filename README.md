@@ -21,6 +21,7 @@
 ## How to Run Locally
 
 1.  **Clone the repository.**
+
 2.  **Setup Backend:**
     ```bash
     cd backend
