@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             citizenContact: formData.get('contact')
         };
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/tickets/', {
+            const response = await fetch('https://arani-backend.onrender.com/api/v1/tickets/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(ticketData),
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchButton = document.getElementById('search-ticket');
         searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/v1/tickets/${ticketId}`);
+            const response = await fetch(`https://arani-backend.onrender.com/api/v1/tickets/${ticketId}`);
             if (!response.ok) {
                 alert(response.status === 404 ? "Ticket ID not found." : "An error occurred.");
                 throw new Error("Ticket fetch failed.");

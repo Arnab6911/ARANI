@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- MAIN DATA FETCHING FUNCTION ---
     async function fetchDashboardData() {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/analytics/dashboard-data');
+            const response = await fetch('https://arani-backend.onrender.com/api/v1/analytics/dashboard-data');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
             

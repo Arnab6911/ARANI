@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function fetchAndDisplayTickets() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/v1/tickets/');
+        const response = await fetch('https://arani-backend.onrender.com/api/v1/tickets/');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const tickets = await response.json();
         const tableBody = document.querySelector('.ticket-queue tbody');
