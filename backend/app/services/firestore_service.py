@@ -1,6 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone  # <-- FIX #1: IMPORT 'timezone'
 import time
 from typing import List, Dict
 from collections import Counter, defaultdict
@@ -21,7 +21,7 @@ tickets_collection = db.collection('tickets')
 def create_ticket(ticket_data: TicketCreate) -> Ticket:
     timestamp_ms = int(time.time() * 1000)
     ticket_id = f"ARA-{timestamp_ms}"
-    created_at = datetime.now()
+    created_at = datetime.now(timezone.utc) # Make createdAt timezone-aware
     
     ai_results = engine.analyze(ticket_data.description_raw)
     
@@ -49,7 +49,6 @@ def get_ticket_by_id(ticket_id: str) -> Dict:
     doc = tickets_collection.document(ticket_id).get()
     return doc.to_dict() if doc.exists else None
 
-# --- UPGRADED, SAFER ANALYTICS FUNCTION ---
 def get_dashboard_analytics() -> Dict:
     all_tickets = get_all_tickets()
     total_tickets = len(all_tickets)
@@ -74,18 +73,18 @@ def get_dashboard_analytics() -> Dict:
 
     alerts = []
     issue_clusters = defaultdict(list)
-    now = datetime.now()
+    # FIX #2: Make the current time timezone-aware (UTC) to match Firestore
+    now = datetime.now(timezone.utc)
     
     for ticket in all_tickets:
         try:
-            # THIS TRY-EXCEPT BLOCK IS THE FIX. IT PREVENTS CRASHES.
             created_at_val = ticket.get('createdAt')
+            # This comparison now works correctly
             if created_at_val and (now - created_at_val).days < 3:
                 simplified_location = ticket.get('location_text', 'Unknown Location').split(',')[0].strip()
                 cluster_key = f"{ticket.get('issue_type', 'Unknown Issue')} at {simplified_location}"
                 issue_clusters[cluster_key].append(ticket)
         except (TypeError, KeyError):
-            # This will catch any errors with bad date formats or missing keys and just skip that ticket
             print(f"Skipping a malformed ticket during analytics: {ticket.get('ticketId')}")
             continue
     
