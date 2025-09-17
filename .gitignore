@@ -1,0 +1,15 @@
+# Python virtual environment folder
+/backend/venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# VS Code settings folder
+.vscode/
+
+# Operating System files
+.DS_Store
+
+# Environment file with your secret API keys
+/backend/.env

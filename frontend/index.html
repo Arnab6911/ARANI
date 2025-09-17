@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project ARAÑI - Department Officer Dashboard for managing citizen grievances">
+    <title>Project ARAÑI - Department Officer Dashboard</title>
+    <link rel="stylesheet" href="modern-theme.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Bar -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 5C11.716 5 5 11.716 5 20C5 28.284 11.716 35 20 35C28.284 35 35 28.284 35 20C35 11.716 28.284 5 20 5ZM20 10C22.761 10 25 12.239 25 15C25 17.761 22.761 20 20 20C17.239 20 15 17.761 15 15C15 12.239 17.239 10 20 10ZM20 32C16.134 32 12.734 30.147 10.576 27.221C12.932 24.98 16.271 23.75 20 23.75C23.729 23.75 27.068 24.98 29.424 27.221C27.266 30.147 23.866 32 20 32Z" fill="var(--primary-color)"/>
+                    </svg>
+                </div>
+                <h1 class="app-name">ARANI</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search by ID, keyword, or citizen name...">
+                </div>
+            </div>
+            <div class="user-controls">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <span class="user-name">A. Sharma</span>
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="portal-links">
+                    <a href="public.html" class="portal-link" title="Citizen Portal">
+                        <i class="fas fa-users"></i>
+                    </a>
+                    <a href="admin.html" class="portal-link" title="Admin Dashboard">
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+                </div>
+                <div class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Navigation Sidebar -->
+            <nav class="sidebar">
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>New Tickets</span>
+                            <span class="notification-dot">8</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-spinner"></i>
+                            <span>In Progress</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Resolved</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="content">
+                <div class="content-header">
+                    <h2>New Grievances - Public Works Dept.</h2>
+                    <div class="filters">
+                        <div class="filter">
+                            <label for="urgency">Urgency:</label>
+                            <select id="urgency">
+                                <option value="all">All</option>
+                                <option value="critical">Critical</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="filter">
+                            <label for="source">Source:</label>
+                            <select id="source">
+                                <option value="all">All</option>
+                                <option value="twitter">Twitter</option>
+                                <option value="app">App</option>
+                                <option value="email">Email</option>
+                            </select>
+                        </div>
+                        <div class="filter date-range">
+                            <label for="date-range">Date Range:</label>
+                            <input type="date" id="date-from">
+                            <span>to</span>
+                            <input type="date" id="date-to">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-queue">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Ticket ID</th>
+                                <th>AI-Generated Summary</th>
+                                <th>Location</th>
+                                <th>Source</th>
+                                <th>SLA Timer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="ticket" data-id="PWD-83475">
+                                <td>
+                                    <span class="status-dot status-high"></span>
+                                </td>
+                                <td>#PWD-83475</td>
+                                <td>Multiple reports of a large pothole on VIP Road near the airport.</td>
+                                <td>New Town, Action Area II</td>
+                                <td><i class="fab fa-twitter source-icon"></i></td>
+                                <td class="sla-timer critical">2h 15m left</td>
+                            </tr>
+                            <tr class="ticket" data-id="PWD-83476">
+                                <td>
+                                    <span class="status-dot status-medium"></span>
+                                </td>
+                                <td>#PWD-83476</td>
+                                <td>Street light not working on Main Street for the past week.</td>
+                                <td>Salt Lake, Sector V</td>
+                                <td><i class="fas fa-envelope source-icon"></i></td>
+                                <td class="sla-timer">5h 30m left</td>
+                            </tr>
+                            <tr class="ticket" data-id="PWD-83477">
+                                <td>
+                                    <span class="status-dot status-high"></span>
+                                </td>
+                                <td>#PWD-83477</td>
+                                <td>Water logging issue after recent rainfall causing traffic congestion.</td>
+                                <td>Park Street Junction</td>
+                                <td><i class="fas fa-mobile-alt source-icon"></i></td>
+                                <td class="sla-timer critical">1h 45m left</td>
+                            </tr>
+                            <tr class="ticket" data-id="PWD-83478">
+                                <td>
+                                    <span class="status-dot status-low"></span>
+                                </td>
+                                <td>#PWD-83478</td>
+                                <td>Request for additional street lighting in residential area.</td>
+                                <td>Rajarhat, Block B</td>
+                                <td><i class="fas fa-envelope source-icon"></i></td>
+                                <td class="sla-timer">8h 20m left</td>
+                            </tr>
+                            <tr class="ticket" data-id="PWD-83479">
+                                <td>
+                                    <span class="status-dot status-medium"></span>
+                                </td>
+                                <td>#PWD-83479</td>
+                                <td>Damaged sidewalk causing accessibility issues for pedestrians.</td>
+                                <td>Camac Street</td>
+                                <td><i class="fab fa-twitter source-icon"></i></td>
+                                <td class="sla-timer">4h 10m left</td>
+                            </tr>
+                            <tr class="ticket" data-id="PWD-83480">
+                                <td>
+                                    <span class="status-dot status-high"></span>
+                                </td>
+                                <td>#PWD-83480</td>
+                                <td>Traffic signal malfunction at major intersection causing delays.</td>
+                                <td>Esplanade Crossing</td>
+                                <td><i class="fas fa-mobile-alt source-icon"></i></td>
+                                <td class="sla-timer critical">2h 05m left</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+
+            <!-- Right Detail Sidebar -->
+            <aside class="detail-sidebar">
+                <div class="empty-state">
+                    <i class="fas fa-ticket-alt"></i>
+                    <p>Select a ticket to view details</p>
+                </div>
+                <div class="ticket-details hidden">
+                    <div class="ticket-header">
+                        <h3><span class="detail-ticket-id">#PWD-83475</span>: <span class="detail-ticket-title">Pothole on VIP Road</span></h3>
+                        <span class="status-badge status-high">High Priority</span>
+                    </div>
+                    <div class="citizen-details">
+                        <h4>Citizen Details</h4>
+                        <p><strong>Name:</strong> <span class="citizen-name">Raj S*****</span></p>
+                        <p><strong>Contact:</strong> <span class="citizen-contact">+91 98765 *****</span></p>
+                    </div>
+                    <div class="complaint-text">
+                        <h4>Complaint</h4>
+                        <p class="complaint-content">There is a large pothole on VIP Road near the airport that has been causing accidents. Multiple vehicles have been damaged. This has been an issue for over a week now and needs immediate attention. The pothole is approximately
+                            2 feet wide and 8 inches deep.</p>
+                    </div>
+                    <div class="ai-insights">
+                        <h4>AI Insights</h4>
+                        <div class="insight-item">
+                            <span class="insight-label">Sentiment:</span>
+                            <span class="insight-value negative">Negative (95% confidence)</span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Urgency:</span>
+                            <span class="insight-value">High</span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Extracted Entities:</span>
+                            <div class="entities">
+                                <span class="entity">Location: VIP Road</span>
+                                <span class="entity">Grievance: Pothole</span>
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Duplicate Tickets:</span>
+                            <div class="duplicate-tickets">
+                                <a href="#" class="duplicate-ticket">#PWD-83470</a>
+                                <a href="#" class="duplicate-ticket">#PWD-83472</a>
+                                <a href="#" class="duplicate-ticket">#PWD-83473</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-map">
+                        <h4>Location</h4>
+                        <div class="map-container">
+                            <!-- Placeholder for map -->
+                            <div class="map-placeholder">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>VIP Road, near Airport</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary">Acknowledge</button>
+                        <button class="btn btn-secondary">Assign to Team</button>
+                        <button class="btn btn-success">Resolve</button>
+                        <button class="btn btn-danger">Escalate to Senior</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

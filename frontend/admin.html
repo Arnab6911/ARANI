@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project ARAÑI - Administrator Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <h1 class="app-name">ARAÑI - Administrator View</h1>
+            </div>
+            <div class="portal-navigation">
+                <a href="public.html" class="nav-button"><i class="fas fa-users"></i> Citizen Portal</a>
+                <a href="index.html" class="nav-button"><i class="fas fa-user-shield"></i> Officer Dashboard</a>
+            </div>
+        </header>
+
+        <div class="kpi-container">
+            <div class="kpi-card" id="kpi-total">
+                <div class="kpi-title">Total Grievances</div>
+                <div class="kpi-value">...</div>
+            </div>
+            <div class="kpi-card" id="kpi-resolution">
+                <div class="kpi-title">Avg. Resolution Time</div>
+                <div class="kpi-value">...</div>
+            </div>
+            <div class="kpi-card" id="kpi-csat">
+                <div class="kpi-title">Citizen Satisfaction (CSAT)</div>
+                <div class="kpi-value">...</div>
+            </div>
+            <div class="kpi-card" id="kpi-sla">
+                <div class="kpi-title">SLA Breaches</div>
+                <div class="kpi-value">...</div>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="map-column panel">
+                <div class="panel-header"><h2>Grievance Hotspot Map</h2></div>
+                <div id="hotspot-map"></div>
+            </div>
+
+            <div class="data-column">
+                <div class="panel">
+                    <div class="panel-header"><h2>Grievances by Department</h2></div>
+                    <div class="panel-body">
+                        <div class="chart-container"><canvas id="department-chart"></canvas></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-header"><h2>Department Performance</h2></div>
+                    <div class="panel-body" id="leaderboard-container">
+                        <table class="performance-table">
+                            <thead>
+                                <tr><th>Rank</th><th>Department</th><th>Tickets</th><th>CSAT</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-header"><h2>Systemic Issue Alerts</h2></div>
+                    <div class="panel-body alerts-container" id="alerts-container">
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script src="admin-script.js"></script>
+</body>
+</html>
